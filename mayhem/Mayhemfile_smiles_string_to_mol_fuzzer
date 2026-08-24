@@ -1,0 +1,12 @@
+project: savantenvs/rdkit
+target: smiles_string_to_mol_fuzzer
+
+# Code/Fuzz/smiles_string_to_mol_fuzzer.dict ships upstream but is NOT wired via -dict=: Mayhem's
+# runner rejects that as a disallowed libfuzzer option ("interferes with expected output/behavior").
+cmds:
+  - cmd: /mayhem/smiles_string_to_mol_fuzzer
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/smiles_string_to_mol_fuzzer/testsuite

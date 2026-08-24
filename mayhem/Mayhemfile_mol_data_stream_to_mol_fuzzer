@@ -1,0 +1,12 @@
+project: savantenvs/rdkit
+target: mol_data_stream_to_mol_fuzzer
+
+# Code/Fuzz/mol_data_stream_to_mol_fuzzer.dict ships upstream but is NOT wired via -dict=: Mayhem's
+# runner rejects that as a disallowed libfuzzer option ("interferes with expected output/behavior").
+cmds:
+  - cmd: /mayhem/mol_data_stream_to_mol_fuzzer
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mol_data_stream_to_mol_fuzzer/testsuite
